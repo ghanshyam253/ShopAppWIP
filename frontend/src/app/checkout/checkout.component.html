@@ -1,0 +1,162 @@
+<mat-horizontal-stepper #stepper="matHorizontalStepper">
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Add Address</ng-template>
+        <div class="checkout">
+
+            <mat-radio-group class="example-radio-group" [(ngModel)]="selectedaddress">
+                <mat-radio-button class="example-radio-button" *ngFor="let address of addresses" [value]="address._id">
+                  {{address.street}} | {{address.city}} | {{address.state}} | {{address.zipcode}} 
+                </mat-radio-button>
+            </mat-radio-group>
+        
+              <div>
+                  <button mat-raised-button color="primary" (click)="addaddress()">
+                      <mat-icon> person_add</mat-icon> Add Address
+                  </button>
+              </div>
+        
+              <div *ngIf="!isaddress" >
+                  <button mat-raised-button color="primary" (click)="goToCardDetails()" class="gotopayment" [disabled]="!selectedaddress">
+                      Payment
+                      <mat-icon>arrow_forward</mat-icon>
+                    </button>
+              </div>
+            <form class="example-form" *ngIf="isaddress" #addressform="ngForm">
+              <mat-grid-list cols="2" rowHeight="100px" gutterSize="20px" #addressdata="ngModelGroup" ngModelGroup="addressdata">
+                <mat-grid-tile>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Street" name="street" #street="ngModel" ngModel required>
+                    <mat-error *ngIf="!street.valid && street.touched">This Field is required</mat-error>
+                  </mat-form-field>          
+                </mat-grid-tile>
+                
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="city" name="city" #city="ngModel" ngModel required>
+                      <mat-error *ngIf="!city.valid && city.touched">This Field is required</mat-error>  
+                      </mat-form-field>
+                </mat-grid-tile>
+            
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="state" name="state" #state="ngModel" ngModel required>
+                      <mat-error *ngIf="!state.valid && state.touched">This Field is required</mat-error>  
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="zipCode" name="zipcode" #zipcode="ngModel" ngModel required>
+                      <mat-error *ngIf="!zipcode.valid && zipcode.touched">This Field is required</mat-error>  
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile>
+                  <button mat-raised-button color="primary" [disabled]="!addressform.valid" (click)="addnewaddress()">
+                    Payment
+                    <mat-icon>arrow_forward</mat-icon>
+                  </button>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </form>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Payment Details</ng-template>
+        <div class="payment">
+
+            <mat-radio-group class="example-radio-group" [(ngModel)]="selectedpayment">
+                <mat-radio-button class="example-radio-button" *ngFor="let payment of payments" [value]="payment._id">
+                    {{ payment.name }} | {{payment.cardnumber}} | {{payment.expirydate}}
+                </mat-radio-button>
+            </mat-radio-group>
+        
+              <div>
+                  <button mat-raised-button color="primary" (click)="addcard()" >
+                      <mat-icon> library_add</mat-icon> Add New Card
+                  </button>
+              </div>
+        
+              <div *ngIf="!gngtoaddnew" >
+                  <button mat-raised-button color="primary" class="gotoreview" (click)="goToReviewPage()" [disabled]="!selectedpayment">
+                      Review
+                      <mat-icon>arrow_forward</mat-icon>
+                    </button>
+              </div>
+            <form class="example-form" *ngIf="gngtoaddnew" #carddetails="ngForm">
+              <mat-grid-list cols="2" rowHeight="100px" gutterSize="20px" #carddata="ngModelGroup" ngModelGroup="carddata" >
+                <mat-grid-tile>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Name on Card" ngModel name="name" #name="ngModel" required>
+                   <mat-error  *ngIf="!name.valid && name.touched">This is a required field</mat-error>
+                  </mat-form-field>          
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Card Number" ngModel name="cardnumber" #cardnumber="ngModel" required>
+                     <mat-error  *ngIf="!cardnumber.valid && cardnumber.touched">This is a required field</mat-error>
+                    </mat-form-field>          
+                  </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="CVV" ngModel name="cvv" #cvv="ngModel" required>
+                      <mat-error *ngIf="!cvv.valid && cvv.touched" >This is a required field</mat-error> 
+                      </mat-form-field>
+                </mat-grid-tile>
+            
+                <mat-grid-tile>
+                    <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="picker" placeholder="Choose expiry date" name="expirydate" ngModel required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="!picker.valid && picker.touched" >This is a required field</mat-error> 
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                  <button mat-raised-button color="primary" [disabled]="!carddetails.valid" (click)="addnewcard()">
+                    Add Card & Review
+                    <mat-icon>arrow_forward</mat-icon>
+                  </button>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </form>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Review</ng-template>
+        <mat-card class="m-2" >
+            <h2 style="text-align: center;">Order Details</h2>
+            <mat-grid-list cols="4" rowHeight="100px" *ngFor="let ele of orders">
+              <mat-grid-tile>{{ ele.productname }}</mat-grid-tile>
+              <mat-grid-tile> price: {{ ele.productprice }}$ </mat-grid-tile>
+              <mat-grid-tile> Quantity: {{ ele.quantity }}</mat-grid-tile> 
+              <mat-grid-tile> Total: {{ ele.quantity * ele.productprice }}</mat-grid-tile> 
+            </mat-grid-list>
+        </mat-card>
+        <mat-card class="m-2" *ngIf="reviewaddress" >
+            <h2 style="text-align: center;">Address Details</h2>
+            <mat-grid-list cols="4" rowHeight="100px">
+              <mat-grid-tile>street: {{ reviewaddress.street }}</mat-grid-tile>
+              <mat-grid-tile>city: {{ reviewaddress.city }}</mat-grid-tile>
+              <mat-grid-tile>state: {{ reviewaddress.state }}</mat-grid-tile>
+              <mat-grid-tile>zipcode: {{ reviewaddress.zipcode }}</mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+        <mat-card class="m-2" *ngIf="reviewCardDetails">
+            <h2 style="text-align: center;">Payment Details</h2>
+            <mat-grid-list cols="3" rowHeight="100px">
+              <mat-grid-tile>name: {{ reviewCardDetails.name }}</mat-grid-tile>
+              <mat-grid-tile>cardnumber: {{ reviewCardDetails.cardnumber }}</mat-grid-tile>
+              <mat-grid-tile>expirydate: {{ reviewCardDetails.expirydate }}</mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+        <div style="text-align: center;">
+          <button mat-raised-button color="primary" (click)="placeorder()"> 
+              Place Order  <mat-icon>done</mat-icon>
+            </button>
+        </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+

@@ -1,0 +1,30 @@
+
+<h3>Enter the following details:</h3>
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+  <mat-grid-list cols="1" rowHeight="380px" >
+    <mat-grid-tile>
+      <div class="container-product" ngModelGroup="profiledata" #profiledata="ngModelGroup">
+        <mat-form-field>
+          <input matInput placeholder="Name" name="name" required [ngModel]="profile.name" #name="ngModel">
+          <mat-error *ngIf="!name.valid && name.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Phonenumber" name="phonenumber" [ngModel]="profile.phonenumber" required #phonenumber="ngModel">
+          <mat-error *ngIf="!phonenumber.valid && phonenumber.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="emailaddress" placeholder="Email" [ngModel]="profile.emailaddress" required #emailaddress="ngModel">
+          <mat-error *ngIf="!emailaddress.valid && emailaddress.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="Username" placeholder="Username" [ngModel]="profile.Username" required #Username="ngModel">
+          <mat-error *ngIf="!Username.valid && Username.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <div>
+          <button type="submit" mat-raised-button color="primary" class="float-right" [disabled]="!f.valid">Submit</button>
+          <button type="reset" mat-raised-button color="warn" class="float-right mx-2">Reset</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

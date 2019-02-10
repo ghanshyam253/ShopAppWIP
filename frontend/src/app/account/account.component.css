@@ -1,0 +1,10 @@
+.mat-grid-list{
+    width: 50%;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+}
+
+.content{
+    float: left;
+}

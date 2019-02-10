@@ -1,0 +1,27 @@
+
+<h3>Enter the following details:</h3>
+<form (ngSubmit)="onSubmit()" #f="ngForm" id="addreview">
+  <mat-grid-list cols="1" rowHeight="330px" >
+    <mat-grid-tile>
+      <div class="container-product" ngModelGroup="reviewformdata" #reviewformdata="ngModelGroup">
+        <mat-form-field>
+          <textarea matInput placeholder="Review Message" name="reviewmessage" required  #reviewmessage="ngModel" [ngModel]="data.reviewmessage" ></textarea>
+          <mat-error *ngIf="!reviewmessage.valid && reviewmessage.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-select placeholder="Select Rating" required #rating="ngModel" name="rating" [ngModel]="data.rating">
+            <mat-option *ngFor="let rate of [0,1,2,3,4,5]" [value]="rate" selected>
+              {{ rate }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!rating.valid && rating.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <div>
+          <button type="submit" mat-raised-button color="primary" class="float-right" [disabled]="!f.valid">Submit</button>
+          <button type="reset" mat-raised-button color="warn" class="float-right mx-2">Reset</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

@@ -1,0 +1,28 @@
+
+<h3>Enter the following details:</h3>
+<form (submit)="onSubmit()" #f="ngForm" id="addproduct">
+  <mat-grid-list cols="1" rowHeight="330px" >
+    <mat-grid-tile>
+      <div class="container-product" ngModelGroup="productdata" #productdata="ngModelGroup">
+        <mat-form-field>
+          <input matInput placeholder="Title" name="name" required [ngModel]="data.name" #name="ngModel">
+          <mat-error *ngIf="!name.valid && name.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Description" name="description" [ngModel]="data.description" required #description="ngModel">
+          <mat-error *ngIf="!description.valid && description.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput name="price" placeholder="Price" [ngModel]="data.price" required #price="ngModel">
+          <mat-error *ngIf="!price.valid && price.touched">This field is mandatory.</mat-error>
+        </mat-form-field>
+        <input type="file" placeholder="Select File" ngModel name="image" #image="ngModel"/>
+        <mat-error *ngIf="!image.valid && image.touched">This field is mandatory</mat-error>
+        <div>
+          <button type="submit" mat-raised-button color="primary" class="float-right" [disabled]="!f.valid">Submit</button>
+          <button type="reset" mat-raised-button color="warn" class="float-right mx-2">Reset</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

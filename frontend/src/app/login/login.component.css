@@ -1,0 +1,29 @@
+.example-icon {
+    padding: 0 14px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+.example-card {
+    width: 400px;
+    margin: 10% auto;
+}
+.mat-card-title{
+    font-size: 16px;
+}
+.example-full-width{
+    width: 90%;
+    align-content: center;
+    margin-left: 5%;
+}
+
+.inventory-body {
+    position: fixed;
+    min-width: 100%;
+    background-image: url(https://backgroundcheckall.com/wp-content/uploads/2017/12/shopping-background-4.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    background-size: cover;
+}

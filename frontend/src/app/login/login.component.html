@@ -1,0 +1,94 @@
+<mat-card class="example-card">
+  <mat-card-content>
+    <mat-tab-group>
+        <mat-tab label="Login">
+            <form class="example-form" (ngSubmit)="login()" #LoginForm="ngForm">
+                <table class="example-full-width" cellspacing="0" ngModelGroup="logindata" #logindata="ngModelGroup">
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Username"  name="Username" ngModel required #username="ngModel">
+                        <mat-error *ngIf="!username.valid && username.touched">This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Password" ngModel #Password="ngModel" type="password" name="Password" required>
+                        <mat-error *ngIf="!Password.valid && Password.touched">This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <button type="submit" mat-raised-button color="primary" class="float-right" [disabled]="!LoginForm.valid">Login</button>   
+                    </td>
+                  </tr>
+                </table>
+              </form>
+        </mat-tab>
+        <mat-tab label="Register">
+            <form class="example-form" (ngSubmit)="register()" #registerform="ngForm">
+                <table class="example-full-width" cellspacing="0" ngModelGroup="registerdata" #registerdata="ngModelGroup">
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Name" ngModel #name="ngModel" type="name" name="name" required>
+                        <mat-error *ngIf="!name.valid && name.touched">This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Username" ngModel #Username="ngModel" name="Username" required>
+                        <mat-error *ngIf="!Username.valid && Username.touched">This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Email" ngModel #emailaddress="ngModel" type="email" name="emailaddress" required>
+                        <mat-error *ngIf="!emailaddress.valid && emailaddress.touched">This field is mandatory.</mat-error>
+                        <mat-error *ngIf="emailaddress.hasError('email') && emailaddress.valid">Enter valid email.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Password" ngModel #passwordhash="ngModel" type="password" name="passwordhash" required>
+                        <mat-error *ngIf="!passwordhash.valid && passwordhash.touched">This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Confirm Password" ngModel #cpassword="ngModel" type="password" name="cpassword" required>
+                        <mat-error *ngIf="!cpassword.valid && cpassword.touched">This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Phonenumber" ngModel #phonenumber="ngModel" name="phonenumber" required>
+                        <mat-error *ngIf="!phonenumber.valid && phonenumber.touched">This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button type="submit" mat-raised-button color="primary" class="float-right" [disabled]="!registerform.valid">Register</button>
+                      <button type="reset" mat-raised-button color="warn" class="float-right mx-2">Reset</button>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+        </mat-tab>
+      </mat-tab-group>
+  </mat-card-content>
+</mat-card>

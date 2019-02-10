@@ -1,0 +1,24 @@
+<mat-toolbar style="background-color: indigo;color: white; font: bold">
+    <mat-toolbar-row>
+      <span>Shopping Gadgets</span>
+      <span class="example-spacer"></span>
+      <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isAdmin()" 
+        routerLink="/pendingorders" routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Pending Orders</button>
+      <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isAdmin()" 
+        routerLink="/dashboard"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Dashboard</button>
+      <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isAdmin()" 
+        routerLink="/userslist"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Users</button>
+      <button mat-button *ngIf="loginservice.isAuthenticated() && !loginservice.isAdmin()" 
+        routerLink="/user"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Dashboard</button>
+      <button mat-button *ngIf="loginservice.isAuthenticated()" 
+        routerLink="/account"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Account</button>
+      <button mat-button *ngIf="loginservice.isAuthenticated() && !loginservice.isAdmin()" 
+        routerLink="/myorders"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">My Cart</button>
+      <button mat-button *ngIf="loginservice.isAuthenticated() && !loginservice.isAdmin()" 
+        routerLink="/userorders"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">My Orders</button>
+      <button mat-button *ngIf="loginservice.isAuthenticated()" 
+        (click)="loginservice.logout()"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Logout</button>
+      <button mat-button *ngIf="!loginservice.isAuthenticated()" 
+        routerLink="/login"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Login/Register</button>
+    </mat-toolbar-row>
+  </mat-toolbar>

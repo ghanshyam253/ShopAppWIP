@@ -1,0 +1,35 @@
+<mat-grid-list cols="2" rowHeight="50px">
+    <mat-grid-tile>
+        Name: 
+    </mat-grid-tile>
+    <mat-grid-tile class="content">
+        {{ profile.name }}<span class="spacer"></span>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        PhoneNumber: 
+    </mat-grid-tile>
+    <mat-grid-tile class="content">
+        {{ profile.phonenumber}}<span class="spacer"></span>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        Email Address: 
+    </mat-grid-tile>
+    <mat-grid-tile class="content">
+        {{ profile.emailaddress }} <span class="spacer"></span>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        Username: 
+    </mat-grid-tile>
+    <mat-grid-tile class="content">
+        {{ profile.Username }} <span class="spacer"></span>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+        <button type="button" mat-raised-button color="primary" class="float-right" (click)="editprofile()"> 
+            <mat-icon>edit</mat-icon>
+            Edit</button>
+    </mat-grid-tile>
+</mat-grid-list>

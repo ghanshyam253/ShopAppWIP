@@ -1,0 +1,20 @@
+<mat-card class="example-card m-3" *ngFor="let product of data">
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <span class="example-spacer"></span>
+    <mat-icon svgIcon="edit" (click)="onEdit(product)"></mat-icon>
+    <mat-icon svgIcon="delete" (click)="onDelete(product._id)"></mat-icon>
+  </mat-card-header>
+  <img mat-card-image src="{{ imageurl + product._id }}" alt="Photo of a Laptop" width="100%" height="200px">
+  <mat-card-content>
+    <p>
+      {{ product.description }}
+    </p>
+    <span class="example-spacer"></span>
+    <p>Price: ${{ product.price }}</p>
+  </mat-card-content>
+</mat-card>
+
+<button mat-fab color="primary" style="position: fixed; right: 10px;bottom: 10px;" (click)="oncreate()">
+  <mat-icon>add</mat-icon>
+</button>
