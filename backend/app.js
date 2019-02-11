@@ -10,7 +10,7 @@ const session = require('express-session')
 const config = require('./config/config')
 let app = express()
 require('./config/database')
-// view engine setup
+// view engine setup 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(cors()) 
