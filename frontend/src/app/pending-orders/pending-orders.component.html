@@ -1,7 +1,7 @@
 <mat-card class="m-2" *ngFor="let order of orders">
   <mat-grid-list cols="5" rowHeight="50px" *ngFor="let ele of order.orderdetails">
     <mat-grid-tile>Product: {{ ele.productname }}</mat-grid-tile>
-    <mat-grid-tile> Quantity: {{ ele.quantity }} </mat-grid-tile>
+    <mat-grid-tile> Quantity: {{ ele.quantity }} </mat-grid-tile> 
     <mat-grid-tile> CardNumber: {{ order.card.cardnumber }} </mat-grid-tile>
     <mat-grid-tile> NameonCard: {{ order.card.name }} </mat-grid-tile>
     <mat-grid-tile>
