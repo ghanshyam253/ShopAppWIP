@@ -46,6 +46,6 @@ module.exports = {
     placeorder: data => new order(data).save(),
     deleteorder: orderid => order.findByIdAndRemove(orderid),
     updateorder: (orderid, data) => order.findByIdAndUpdate(orderid, data),
-    getorderbyid: user_id => order.find({ userid: user_id }).populate('card'),
+    getorderbyid: user_id => order.find({ userid: user_id }).populate('card').populate('address'),
     getorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('card').populate('address')
 }

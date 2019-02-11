@@ -8,7 +8,8 @@
       <button mat-raised-button color="warn" (click)="writereview(order)"> 
         <mat-icon>rate_review</mat-icon>
         ReviewMessage</button>
-      </mat-grid-tile> 
-    </mat-grid-list>
-  </mat-card>
-  <h1 *ngIf="!(orders && orders.length)">There are no orders currently</h1>
+      <mat-icon svgIcon="delete" color="warn" (click)="deleteOrder(order._id)"></mat-icon>
+    </mat-grid-tile> 
+  </mat-grid-list>
+</mat-card>
+<h1 *ngIf="!(orders && orders.length)">There are no orders currently</h1>

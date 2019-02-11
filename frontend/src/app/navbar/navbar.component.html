@@ -1,6 +1,6 @@
 <mat-toolbar style="background-color: indigo;color: white; font: bold">
     <mat-toolbar-row>
-      <span>Shopping Gadgets</span>
+      <span>App</span>
       <span class="example-spacer"></span>
       <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isAdmin()" 
         routerLink="/pendingorders" routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Pending Orders</button>

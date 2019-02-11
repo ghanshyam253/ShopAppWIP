@@ -3,6 +3,10 @@ import { DataService } from '../services/dataservice/dataservice.service';
 import { DialogService } from '../services/dialog/dialog.service';
 import { NotificationService } from '../services/notification/notification.service';
 
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
+
+
 @Component({
   selector: 'app-user-orders',
   templateUrl: './user-orders.component.html',
@@ -10,7 +14,15 @@ import { NotificationService } from '../services/notification/notification.servi
 })
 export class UserOrdersComponent implements OnInit {
 
-  constructor(private dataservice: DataService, private dialogservice: DialogService, private ns: NotificationService) { }
+  constructor(
+    private dataservice: DataService, 
+    private dialogservice: DialogService,
+    private ns: NotificationService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer) { 
+      iconRegistry.addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/img/edit.svg'))
+      iconRegistry.addSvgIcon('delete', sanitizer.bypassSecurityTrustResourceUrl('assets/img/delete.svg'))
+     }
   orders = [];
 
   ngOnInit() {
@@ -47,6 +59,23 @@ export class UserOrdersComponent implements OnInit {
     },
     err => {
       this.ns.warn('unable to submit review')
+    })
+  }
+
+    deleteOrder(productid){
+    this.dialogservice
+    .opendeletedialog()
+    .afterClosed()
+    .subscribe(res =>{
+      if(res){
+//        call service to delete order
+        this.dataservice
+        .deleteorder(productid)
+        .subscribe(res => {
+          this.ngOnInit()
+          this.ns.warn(res)
+        })
+      }
     })
   }
 

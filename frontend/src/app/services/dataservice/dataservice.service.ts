@@ -120,7 +120,9 @@ export class DataService {
   getpendingorders () {
     return this.httpclient.get<any[]>(config.url + 'order/getPendingOrders')
   }
-
+  deleteorder (orderid) {
+    return this.httpclient.post(config.url + 'order/delete/' + orderid, {}, {responseType: 'text'})
+  }
   addproduct (formdata) {
     return this.httpclient.post(config.url + 'product/create', formdata, {responseType: 'text'})
   }
