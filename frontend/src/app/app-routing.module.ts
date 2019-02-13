@@ -2,7 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+
 import {PendingOrdersComponent} from './pending-orders/pending-orders.component'
+
+import {OrderedOrdersComponent} from './ordered-orders/ordered-orders.component';
+import {PackedOrdersComponent} from './packed-orders/packed-orders.component';
+import {InTransitOrdersComponent} from './in-transit-orders/in-transit-orders.component';
+import {DeliveredOrdersComponent} from './delivered-orders/delivered-orders.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountComponent } from './account/account.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -16,11 +23,19 @@ import { CanDeactivateGuard } from './services/guard/deactivateguard';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { UsersListComponent } from './users-list/users-list.component';
 
+
 const routes: Routes = [
 
   { path: '', component: LoginComponent },
   { path: 'login', redirectTo: '/' },
+ 
   { path: 'pendingorders', component: PendingOrdersComponent, canActivate: [GuardService] },
+
+  { path: 'orderedorders', component: OrderedOrdersComponent, canActivate: [GuardService] },
+  { path: 'packedorders', component: PackedOrdersComponent, canActivate: [GuardService] },
+  { path: 'intransitorders', component: InTransitOrdersComponent, canActivate: [GuardService] },
+  { path: 'deliveredorders', component: DeliveredOrdersComponent, canActivate: [GuardService] },
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [GuardService] },
   { path: 'account', component: AccountComponent, canActivate: [GuardService] },
   { path: 'myorders', component: OrdersComponent, canActivate: [GuardService] },

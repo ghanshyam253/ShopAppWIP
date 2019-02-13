@@ -4,6 +4,7 @@ let addToCart = (req, res) => {
     cartmodel.addToCart({
         "productname": req.body.name,
         "productprice": req.body.price,
+        "quantity":req.body.quantity,
          "user_id": req.session.user.id
     })
         .then(cart => {                

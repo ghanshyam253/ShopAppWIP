@@ -31,6 +31,10 @@ import { AuthInterceptor } from './services/interceptors/auth.interceptor';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { PendingOrdersComponent } from './pending-orders/pending-orders.component';
+import { OrderedOrdersComponent } from './ordered-orders/ordered-orders.component';
+import { PackedOrdersComponent } from './packed-orders/packed-orders.component';
+import { InTransitOrdersComponent } from './in-transit-orders/in-transit-orders.component';
+import { DeliveredOrdersComponent } from './delivered-orders/delivered-orders.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import { PendingOrdersComponent } from './pending-orders/pending-orders.componen
     ProfileEditComponent,
     UserOrdersComponent,
     UsersListComponent,
-    PendingOrdersComponent
+    PendingOrdersComponent,
+    OrderedOrdersComponent,
+    PackedOrdersComponent,
+    InTransitOrdersComponent,
+    DeliveredOrdersComponent
   ],
   imports: [
     BrowserModule,

@@ -31,9 +31,13 @@ export class LoginComponent implements OnInit {
               this.loginservice.setAdmin(true)
               this.router.navigate(["dashboard"]);
               return
+            }else if(res['role'] == 'vendor'){
+               this.router.navigate(["orderedorders"]);
+              return
+            }else{
+              this.loginservice.setAdmin(false)
+              this.router.navigate(["user"]);
             }
-            this.loginservice.setAdmin(false)
-            this.router.navigate(["user"]);
     },
     err => {
       console.log(err)

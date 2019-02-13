@@ -36,6 +36,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   addToCart (product: Product) {
+    product.quantity =1;
     this.dataservice.addToCart(product)
   }
 }

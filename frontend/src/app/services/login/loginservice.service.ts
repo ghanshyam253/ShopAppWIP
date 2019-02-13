@@ -21,9 +21,16 @@ export class LoginService {
     localStorage.removeItem('role')
     this.router.navigate(["login"])
   }
-
+//admin
   isAdmin() {
     return localStorage.getItem('role') == 'admin'
+  }
+//vendor
+  isVendor() {
+    return localStorage.getItem('role') == 'vendor'
+  }
+  isUser() {
+    return localStorage.getItem('role') == 'user'
   }
   isAuthenticated(): boolean {
     return localStorage.getItem('token') ? true : false
