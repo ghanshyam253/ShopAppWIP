@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService } from '../services/dialog/dialog.service';
 import { DataService } from '../services/dataservice/dataservice.service';
 import { Profile } from '../models/profile.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -10,7 +11,7 @@ import { Profile } from '../models/profile.model';
 })
 export class AccountComponent implements OnInit {
   profile: Profile;
-  constructor(private dialogservice: DialogService, private dataservice: DataService) { }
+  constructor(private router: Router, private dialogservice: DialogService, private dataservice: DataService) { }
 
   ngOnInit() {
     this.dataservice
@@ -18,7 +19,12 @@ export class AccountComponent implements OnInit {
       .subscribe(res =>{
         console.log(res)
         this.profile = res
-      })
+      },
+      error => {
+        console.log(error);
+         this.router.navigate(["login"]);        
+      }
+      )
   }
 
   editprofile () {
