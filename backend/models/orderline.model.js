@@ -43,9 +43,41 @@ const order = mongoose.model('order', schema)
 
 module.exports = {
     getorders: user_id => order.find({userid: user_id}),
+    getorderbyorderid: order_id => order.findOne({_id: order_id}),
+    
     placeorder: data => new order(data).save(),
     deleteorder: orderid => order.findByIdAndRemove(orderid),
     updateorder: (orderid, data) => order.findByIdAndUpdate(orderid, data),
     getorderbyid: user_id => order.find({ userid: user_id }).populate('card').populate('address'),
-    getorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('card').populate('address')
+    getorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('card').populate('address'),
+    
+    deleteorderfromgrouporder: (completeorderid, specificorderid) => {
+        console.log("completeorderid",completeorderid);
+        console.log("specificorderid",specificorderid);
+        
+        return order.updateOne( 
+      { _id: completeorderid },
+      { $pull: { orderdetails : { _id : specificorderid } } },
+      { safe: true },
+      function removeConnectionsCB(err, obj) {
+        console.log(JSON.stringify(arguments));
+
+      });
+    },
+    updateOrderStatus: (orderId, status) => {
+        console.log("orderId",orderId);
+        console.log("status",status);
+
+        return order.updateOne(
+            {
+                "orderdetails._id" :  orderId
+            },
+            {
+                $set:{
+                    'orderdetails.$.orderStatus': status
+                }
+            }
+        );
+    },
+    
 }

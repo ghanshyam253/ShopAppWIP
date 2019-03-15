@@ -62,7 +62,7 @@ export class UserOrdersComponent implements OnInit {
     })
   }
 
-    deleteOrder(productid){
+    deleteOrder(completeorderid, specificorderid){
     this.dialogservice
     .opendeletedialog()
     .afterClosed()
@@ -70,7 +70,7 @@ export class UserOrdersComponent implements OnInit {
       if(res){
 //        call service to delete order
         this.dataservice
-        .deleteorder(productid)
+        .deleteorderfromgrouporder(completeorderid, specificorderid)
         .subscribe(res => {
           this.ngOnInit()
           this.ns.warn(res)

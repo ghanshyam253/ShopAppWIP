@@ -1,3 +1,15 @@
-<p>
-  ordered-orders works!
-</p>
+<mat-card class="m-2" *ngFor="let order of orders">
+  <mat-grid-list cols="4" rowHeight="100px" *ngFor="let ele of order.orderdetails">
+    <mat-grid-tile>Product: {{ ele.productname }}</mat-grid-tile>
+    <mat-grid-tile> Quantity: {{ ele.quantity }} </mat-grid-tile> 
+    <mat-grid-tile> {{ order.address.street +", "+ order.address.city +", "+ order.address.state +", "+ order.address.zipcode}} </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button color="" (click)="orderPacked(order, ele)"> 
+        <mat-icon>rate_review</mat-icon>
+        Order Processed and packed
+      </button>
+      <mat-icon svgIcon="delete" color="warn" (click)="deleteOrder(order._id)"></mat-icon>
+    </mat-grid-tile> 
+  </mat-grid-list>
+</mat-card>
+<h1 *ngIf="!(orders && orders.length)">There are no ordered orders currently</h1>

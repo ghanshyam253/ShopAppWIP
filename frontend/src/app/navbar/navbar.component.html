@@ -18,12 +18,13 @@
         routerLink="/deliveredorders" routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Delivered Orders</button>
 
       <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isAdmin()" 
-        routerLink="/dashboard"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Admin Catalogue</button>
+        routerLink="/admindashboard"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Admin Catalogue</button>
       <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isAdmin()" 
         routerLink="/userslist"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Users</button>
 
       <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isUser()" 
-        routerLink="/user"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Product Dashboard</button>
+        routerLink="/userdashboard"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">Product Dashboard</button>
+
       <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isUser()" 
         routerLink="/myorders"  routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact:true}">My Cart</button>
       <button mat-button *ngIf="loginservice.isAuthenticated() && loginservice.isUser()" 

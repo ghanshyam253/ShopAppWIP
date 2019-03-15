@@ -35,6 +35,10 @@ import { OrderedOrdersComponent } from './ordered-orders/ordered-orders.componen
 import { PackedOrdersComponent } from './packed-orders/packed-orders.component';
 import { InTransitOrdersComponent } from './in-transit-orders/in-transit-orders.component';
 import { DeliveredOrdersComponent } from './delivered-orders/delivered-orders.component';
+import { DashboardVendorComponent } from './dashboard-vendor/dashboard-vendor.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { DashboardCustomerComponent } from './dashboard-customer/dashboard-customer.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { DeliveredOrdersComponent } from './delivered-orders/delivered-orders.co
     OrderedOrdersComponent,
     PackedOrdersComponent,
     InTransitOrdersComponent,
-    DeliveredOrdersComponent
+    DeliveredOrdersComponent,
+    DashboardVendorComponent,
+    DashboardAdminComponent,
+    DashboardCustomerComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,51 @@ let deleteorder = (req, res) => {
 }
 module.exports.deleteorder = deleteorder
 
+let deleteorderfromgrouporder = (req, res) => {
+    console.log("req.parms");
+    console.log(JSON.stringify(req.params));
+    console.log("req.parms");
+    var completeorderid = req.params.completeorderid;
+     var specificorderid = req.params.specificorderid;
+     debugger;
+     console.log("calling deleteorderfromgrouporder");
+    orderlinemodel.deleteorderfromgrouporder(completeorderid, specificorderid)
+        .then(order => {
+            console.log("checking response of deleteorderfromgrouporder");
+            
+            (orderlinemodel.getorderbyorderid(completeorderid))
+                .then(completeOrder =>{
+                    console.log("getorderbyorderid=>")
+                    console.log(JSON.stringify(completeOrder));
+                    if(!completeOrder.orderdetails || !completeOrder.orderdetails instanceof Array || completeOrder.orderdetails.length==0){
+                        console.log("deleteding complete order")
+                        orderlinemodel.deleteorder(completeorderid)
+                        .then(order => {
+                            return res.send('order deleted successfully')
+                        })
+                        .catch(err => {
+                            return res.send('order deleted successfully')
+//                            return res.send(422, err.message)
+                        })
+                    }else{
+                        console.log("NOT deleteding complete order")
+                        return res.send('order deleted successfully')
+                    }
+                })
+                .catch(err => {
+                    return res.send('order deleted successfully')
+                })
+//             return res.json(order)
+//            return res.send('order deleted successfully')
+        })
+        .catch(err => {
+            return res.send(422, err.message)
+        })
+}
+module.exports.deleteorderfromgrouporder = deleteorderfromgrouporder
+
 let updateorder = (req, res) => {
+    console.log(JSON.stringify(req.body))
     orderlinemodel.updateorder(req.params.id,req.body.reviewformdata)
         .then(order => {
             return res.send('order updated successfully')
@@ -44,7 +88,7 @@ let getallorderforauser = (req,res) => {
         return res.send(422, err.message)
     })
 }
-module.exports.getallorderforauser = getallorderforauser
+module.exports. getallorderforauser = getallorderforauser
 
 let getorderforanid = (req,res) => {
     orderlinemodel.getorderforanid(req.params.userid)
@@ -69,3 +113,34 @@ let getpendingorder = (req,res) => {
 }
 module.exports.getpendingorder = getpendingorder
 
+let getordersbystatus = (req,res) => {
+    console.log(req.params)
+    console.log(JSON.stringify(req.params));
+    console.log(JSON.stringify(req.query));
+    
+    orderlinemodel.getorderbyorderstatus(req.query.orderstatus)
+    .then(order => {
+        return res.json(order)
+    })
+    .catch(err => {
+        return res.send(422, err.message)
+    })
+}
+module.exports.getordersbystatus = getordersbystatus
+
+let updateOrderStatus = (req,res) => {
+    console.log("updateOrderStatus");
+    console.log(JSON.stringify(req.params));
+    console.log(JSON.stringify(req.query));
+    var orderId = req.query.orderId;
+    var status = req.query.status;
+//    return res.json("order");
+    orderlinemodel.updateOrderStatus(orderId, status)
+    .then(order => {
+        return res.json(order)
+    })
+    .catch(err => {
+        return res.send(422, err.message)
+    })
+}
+module.exports.updateOrderStatus = updateOrderStatus

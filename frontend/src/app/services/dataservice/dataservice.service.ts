@@ -123,6 +123,9 @@ export class DataService {
   deleteorder (orderid) {
     return this.httpclient.post(config.url + 'order/delete/' + orderid, {}, {responseType: 'text'})
   }
+  deleteorderfromgrouporder (completeorderid, specificorderid) {
+    return this.httpclient.post(config.url + 'order/deleteorderfromgrouporder/' + completeorderid+"/"+specificorderid, {}, {responseType: 'text'})
+  }
   addproduct (formdata) {
     return this.httpclient.post(config.url + 'product/create', formdata, {responseType: 'text'})
   }
@@ -147,4 +150,9 @@ export class DataService {
   updatereview (orderid, data) {
     return this.httpclient.post(config.url + 'order/edit/' + orderid, { ...data }, {responseType: 'text'})
   }
+
+  updateOrderStatus (orderId, status) {
+    return this.httpclient.post(config.url + 'order/updateOrderStatus?' + "orderId="+orderId+"&status="+status, {}, {responseType: 'text'})
+  }
+
 }

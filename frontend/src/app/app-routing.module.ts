@@ -23,11 +23,16 @@ import { CanDeactivateGuard } from './services/guard/deactivateguard';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { UsersListComponent } from './users-list/users-list.component';
 
+import {DashboardAdminComponent} from './dashboard-admin/dashboard-admin.component';
+import {DashboardVendorComponent} from './dashboard-vendor/dashboard-vendor.component';
+import {DashboardCustomerComponent} from './dashboard-customer/dashboard-customer.component';
+
+import {LandingPageComponent} from './landing-page/landing-page.component';
 
 const routes: Routes = [
+  { path: '', component: LandingPageComponent },
 
-  { path: '', component: LoginComponent },
-  { path: 'login', redirectTo: '/' },
+  { path: 'login', component: LoginComponent},
  
   { path: 'pendingorders', component: PendingOrdersComponent, canActivate: [GuardService] },
 
@@ -36,10 +41,10 @@ const routes: Routes = [
   { path: 'intransitorders', component: InTransitOrdersComponent, canActivate: [GuardService] },
   { path: 'deliveredorders', component: DeliveredOrdersComponent, canActivate: [GuardService] },
 
-  { path: 'dashboard', component: DashboardComponent, canActivate: [GuardService] },
+  { path: 'admindashboard', component: DashboardComponent, canActivate: [GuardService] },
   { path: 'account', component: AccountComponent, canActivate: [GuardService] },
   { path: 'myorders', component: OrdersComponent, canActivate: [GuardService] },
-  { path: 'user', component: UserDashboardComponent, canActivate: [GuardService] },
+  { path: 'userdashboard', component: UserDashboardComponent, canActivate: [GuardService] },
   { path: 'checkout', component: CheckoutComponent, canActivate: [GuardService] },
   { path: 'payment', component: PaymentComponent, canActivate: [GuardService] },
   { path: 'review', component: ReviewComponent, canActivate: [GuardService] },
@@ -47,7 +52,34 @@ const routes: Routes = [
   { path: 'userslist', component: UsersListComponent, canActivate: [GuardService] },
   { path: '**', component: NotFoundComponent },
 
+  { path: 'dashboardadmin', component: DashboardAdminComponent, canActivate: [GuardService] },
+  { path: 'dashboardvendor', component: DashboardVendorComponent, canActivate: [GuardService] },
+  { path: 'dashboardcustomer', component: DashboardCustomerComponent, canActivate: [GuardService] },
 ]
+
+// const routes: Routes = [
+//   // { path: '', component: LoginComponent },
+//   // { path: 'login', redirectTo: '/' },
+ 
+//   // { path: 'pendingorders', component: PendingOrdersComponent, canActivate: [GuardService] },
+
+//   // { path: 'orderedorders', component: OrderedOrdersComponent, canActivate: [GuardService] },
+//   // { path: 'packedorders', component: PackedOrdersComponent, canActivate: [GuardService] },
+//   // { path: 'intransitorders', component: InTransitOrdersComponent, canActivate: [GuardService] },
+//   // { path: 'deliveredorders', component: DeliveredOrdersComponent, canActivate: [GuardService] },
+
+//   // { path: 'dashboard', component: DashboardComponent, canActivate: [GuardService] },
+//   // { path: 'account', component: AccountComponent, canActivate: [GuardService] },
+//   // { path: 'myorders', component: OrdersComponent, canActivate: [GuardService] },
+//   // { path: 'user', component: UserDashboardComponent, canActivate: [GuardService] },
+//   // { path: 'checkout', component: CheckoutComponent, canActivate: [GuardService] },
+//   // { path: 'payment', component: PaymentComponent, canActivate: [GuardService] },
+//   // { path: 'review', component: ReviewComponent, canActivate: [GuardService] },
+//   // { path: 'userorders', component: UserOrdersComponent, canActivate: [GuardService] },
+//   // { path: 'userslist', component: UsersListComponent, canActivate: [GuardService] },
+//   // { path: '**', component: NotFoundComponent },
+
+// ]
 
 @NgModule({
   declarations: [],

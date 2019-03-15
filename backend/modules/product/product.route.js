@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const productcontroller = require('./controllers/product.controller')
+const auth = require('../../modules/core/middleware')
+
 const multer = require('multer')
-router.get('/all', productcontroller.getallproducts)
+router.get('/all',auth, productcontroller.getallproducts)
 
 router.get('/getone/:id', productcontroller.getonebyid)
 
