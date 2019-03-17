@@ -87,7 +87,10 @@ border-radius: 0px;
 }
 
 .body{
-    background-image: url('/assets/img/gadgets.jpg')
+    /* background-image: url('/assets/img/gadgets__.jpg') */
+    background-image: url('/assets/img/FreshMeat.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .background{
     background-color: white;

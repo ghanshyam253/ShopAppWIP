@@ -13,6 +13,39 @@ import { ReviewComponent } from 'src/app/review/review.component';
 export class DialogService {
 
   constructor(private dialog: MatDialog) { }
+  openOrderProcessedPackedDialog () {
+    return this.dialog.open(MatConfirmDialogComponent, {
+      width: '390px',
+      panelClass: 'confirm-dialog-container',
+      position: { top: "10%" },
+      data :{
+        message : "Order is processesed and packed and will move to Packed Order Section?"
+      }
+    })
+  }
+
+  openOrderPickedForDeliveryDialog () {
+    return this.dialog.open(MatConfirmDialogComponent, {
+      width: '390px',
+      panelClass: 'confirm-dialog-container',
+      position: { top: "10%" },
+      data :{
+        message : "Order is picked up for delivery and will move to In Transit Order Section?"
+      }
+    })
+  }
+
+  
+  openOrderDeliveredDialog () {
+    return this.dialog.open(MatConfirmDialogComponent, {
+      width: '390px',
+      panelClass: 'confirm-dialog-container',
+      position: { top: "10%" },
+      data :{
+        message : "Order is Delivered. Please confirm!"
+      }
+    })
+  }
   opendeletedialog () {
     return this.dialog.open(MatConfirmDialogComponent, {
       width: '390px',

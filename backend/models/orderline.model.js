@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 const orderdetailsSchema = new Schema({
     productname: String,
     quantity: Number,
-    orderStatus : String
+    orderStatus : String,
+    orderDate : String
 })
 
 
@@ -49,7 +50,7 @@ module.exports = {
     deleteorder: orderid => order.findByIdAndRemove(orderid),
     updateorder: (orderid, data) => order.findByIdAndUpdate(orderid, data),
     getorderbyid: user_id => order.find({ userid: user_id }).populate('card').populate('address'),
-    getorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('card').populate('address'),
+    getallorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('card').populate('address'),
     
     deleteorderfromgrouporder: (completeorderid, specificorderid) => {
         console.log("completeorderid",completeorderid);
@@ -67,14 +68,15 @@ module.exports = {
     updateOrderStatus: (orderId, status) => {
         console.log("orderId",orderId);
         console.log("status",status);
-
+        var orderDate = new Date()
         return order.updateOne(
             {
                 "orderdetails._id" :  orderId
             },
             {
                 $set:{
-                    'orderdetails.$.orderStatus': status
+                    'orderdetails.$.orderStatus': status,
+                    'orderdetails.$.orderDate': orderDate
                 }
             }
         );

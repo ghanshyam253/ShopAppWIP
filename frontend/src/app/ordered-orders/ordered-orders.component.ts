@@ -25,9 +25,12 @@ export class OrderedOrdersComponent implements OnInit {
   orders = [];
 
   ngOnInit() {
+    // 
+    var statusForFetch = "ORDER PLACED";
     this.dataservice
-    .getpendingorders()
+    .getAllOrdersByStatus(statusForFetch)
     .subscribe(res =>{
+      console.log(res);
       this.orders = res
     })
   }
@@ -37,7 +40,7 @@ export class OrderedOrdersComponent implements OnInit {
     let status = "ORDER PROCESSED PACKED";
     
     this.dialogservice
-    .opendeletedialog()
+    .openOrderProcessedPackedDialog()
     .afterClosed()
     .subscribe(res =>{
       if(res){
@@ -46,7 +49,7 @@ export class OrderedOrdersComponent implements OnInit {
         .updateOrderStatus(orderId, status)
         .subscribe(res => {
           this.ngOnInit()
-          this.ns.warn(res)
+          this.ns.success("Ordered Processed and Packed!!")
         })
       }
     })

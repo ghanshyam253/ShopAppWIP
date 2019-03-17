@@ -155,4 +155,7 @@ export class DataService {
     return this.httpclient.post(config.url + 'order/updateOrderStatus?' + "orderId="+orderId+"&status="+status, {}, {responseType: 'text'})
   }
 
+  getAllOrdersByStatus(status) {
+    return this.httpclient.get(config.url + 'order/getAllOrdersByStatus?' + "orderstatus="+status)
+  }
 }

@@ -1,5 +1,6 @@
 <mat-card class="m-2" *ngFor="let order of orders">
-  <mat-grid-list cols="4" rowHeight="100px" *ngFor="let ele of order.orderdetails">
+  <mat-grid-list cols="5" rowHeight="100px" *ngFor="let ele of order.orderdetails">
+    <mat-grid-tile>ID: {{ order._id }}</mat-grid-tile>
     <mat-grid-tile>Product: {{ ele.productname }}</mat-grid-tile>
     <mat-grid-tile> Quantity: {{ ele.quantity }} </mat-grid-tile> 
     <mat-grid-tile> {{ order.address.street +", "+ order.address.city +", "+ order.address.state +", "+ order.address.zipcode}} </mat-grid-tile>
@@ -8,7 +9,7 @@
         <mat-icon>rate_review</mat-icon>
         Order Processed and packed
       </button>
-      <mat-icon svgIcon="delete" color="warn" (click)="deleteOrder(order._id)"></mat-icon>
+      <!-- <mat-icon class="hide" svgIcon="delete" color="warn" (click)="orderProcessedAndPacked(order._id)"></mat-icon> -->
     </mat-grid-tile> 
   </mat-grid-list>
 </mat-card>

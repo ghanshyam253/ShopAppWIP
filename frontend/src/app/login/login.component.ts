@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
            document.body.classList.add('background')
            if(res['role'] == 'admin'){
               this.loginservice.setAdmin(true)
-              this.router.navigate(["dashboard"]);
+              this.router.navigate(["admindashboard"]);
               return
             }else if(res['role'] == 'vendor'){
                this.router.navigate(["orderedorders"]);

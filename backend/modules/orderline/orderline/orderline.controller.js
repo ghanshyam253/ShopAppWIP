@@ -113,12 +113,12 @@ let getpendingorder = (req,res) => {
 }
 module.exports.getpendingorder = getpendingorder
 
-let getordersbystatus = (req,res) => {
+let getallordersbystatus = (req,res) => {
     console.log(req.params)
     console.log(JSON.stringify(req.params));
     console.log(JSON.stringify(req.query));
     
-    orderlinemodel.getorderbyorderstatus(req.query.orderstatus)
+    orderlinemodel.getallorderbyorderstatus(req.query.orderstatus)
     .then(order => {
         return res.json(order)
     })
@@ -126,7 +126,7 @@ let getordersbystatus = (req,res) => {
         return res.send(422, err.message)
     })
 }
-module.exports.getordersbystatus = getordersbystatus
+module.exports.getallordersbystatus = getallordersbystatus
 
 let updateOrderStatus = (req,res) => {
     console.log("updateOrderStatus");

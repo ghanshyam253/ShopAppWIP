@@ -16,7 +16,7 @@ router.get('/getorder/:userid', ordercontroller.getorderforanid)
 
 router.get('/getPendingOrders', ordercontroller.getpendingorder)
 
-router.get('/getOrdersByStatus', ordercontroller.getordersbystatus)
+router.get('/getAllOrdersByStatus', ordercontroller.getallordersbystatus)
 
 router.post('/updateOrderStatus', ordercontroller.updateOrderStatus)
 

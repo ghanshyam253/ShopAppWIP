@@ -3,4 +3,5 @@ export class Order{
     productprice: Number;
     quantity: Number;
     orderStatus: String;
+    orderDate : String;
 }

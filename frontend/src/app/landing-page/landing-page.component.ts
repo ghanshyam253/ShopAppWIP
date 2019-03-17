@@ -11,5 +11,6 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  favoriteSeason: string;
+  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
 }

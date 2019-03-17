@@ -67,10 +67,13 @@ export class CheckoutComponent implements OnInit {
     this.dataservice
     .addaddress({ ...this.addressform.value.addressdata, userid: localStorage.getItem('id') })
     .subscribe(res => {
-      this.selectedaddress = res['id']
+      this.selectedaddress = res._doc['_id'];
+      this.selectedaddress = res._doc._id;
+      this.reviewaddress =res._doc;
       this.ns.success(res['message'])
-      this.ngOnInit()
-      this.goToCardDetails()
+//      this.ngOnInit()
+      this.stepper.next()
+//      this.goToCardDetails()
     })
   }
   addnewcard () {
@@ -79,10 +82,12 @@ export class CheckoutComponent implements OnInit {
     .addcard({ ...this.carddetails.value.carddata, userid: localStorage.getItem('id') })
     .subscribe(
       res => {
-        this.selectedpayment = res['id']
+        this.selectedpayment = res._doc['_id']
+        this.reviewCardDetails = res._doc;
         this.ns.success(res['message'])
-        this.ngOnInit()
-        this.goToReviewPage()
+        this.stepper.next()
+//        this.ngOnInit()
+//        this.goToReviewPage()
       })
   }
   placeorder () {
@@ -90,6 +95,7 @@ export class CheckoutComponent implements OnInit {
     // this.router.navigate(['user'])
     this.orders.map(order => {
       order.orderStatus = "ORDER PLACED";
+      order.orderDate = new Date();
       return order;
     })
     debugger;

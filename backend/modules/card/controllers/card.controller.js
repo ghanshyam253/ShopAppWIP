@@ -4,7 +4,7 @@ let addcard = (req, res) => {
     cardmodel.addcard(req.body)
         .then(card => {                
                 return res.json({
-                    id: card.id,
+                    ...card,
                     message: "card added successfully"
                 })
         })
