@@ -114,12 +114,20 @@ let getpendingorder = (req,res) => {
 module.exports.getpendingorder = getpendingorder
 
 let getallordersbystatus = (req,res) => {
-    console.log(req.params)
-    console.log(JSON.stringify(req.params));
-    console.log(JSON.stringify(req.query));
+//    console.log(req.params)
+//    console.log(JSON.stringify(req.params));
+//    console.log(JSON.stringify(req.query));
     
     orderlinemodel.getallorderbyorderstatus(req.query.orderstatus)
     .then(order => {
+//        console.log(order.orderstatus);
+//        console.log("****");
+        console.log(req.query.orderstatus);
+        for(let g=0; g< order.length; g++){
+            if(order[g].orderdetails && order[g].orderdetails.length>0){
+                order[g].orderdetails = order[g].orderdetails.filter( o => o.orderStatus == req.query.orderstatus)
+            }
+        }
         return res.json(order)
     })
     .catch(err => {

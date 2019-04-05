@@ -29,7 +29,7 @@ export class DeliveredOrdersComponent implements OnInit {
     var statusForFetch = "ORDER DELIVERED";
     this.dataservice
     .getAllOrdersByStatus(statusForFetch)
-    .subscribe(res =>{
+    .subscribe((res: any[]) =>{
       console.log(res);
       for(var q=0; q< res.length; q++){
         for(var g=0; g<res[q].orderdetails.length; g++){
@@ -47,7 +47,7 @@ export class DeliveredOrdersComponent implements OnInit {
     let status = "ORDER DELIVERED";
     
     this.dialogservice
-    .openOrderPickudForDeliveryDialog()
+    .openOrderPickedForDeliveryDialog()
     .afterClosed()
     .subscribe(res =>{
       if(res){

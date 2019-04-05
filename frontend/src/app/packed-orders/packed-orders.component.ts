@@ -29,7 +29,7 @@ export class PackedOrdersComponent implements OnInit {
     var statusForFetch = "ORDER PROCESSED PACKED";
     this.dataservice
     .getAllOrdersByStatus(statusForFetch)
-    .subscribe(res =>{
+    .subscribe((res:any[]) =>{
       console.log(res);
       this.orders = res
     })

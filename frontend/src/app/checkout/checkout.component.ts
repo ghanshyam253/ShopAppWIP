@@ -67,9 +67,9 @@ export class CheckoutComponent implements OnInit {
     this.dataservice
     .addaddress({ ...this.addressform.value.addressdata, userid: localStorage.getItem('id') })
     .subscribe(res => {
-      this.selectedaddress = res._doc['_id'];
-      this.selectedaddress = res._doc._id;
-      this.reviewaddress =res._doc;
+      this.selectedaddress = res["_doc"]['_id'];
+      this.selectedaddress = res["_doc"]["_id"];
+      this.reviewaddress =res["_doc"];
       this.ns.success(res['message'])
 //      this.ngOnInit()
       this.stepper.next()
@@ -82,8 +82,8 @@ export class CheckoutComponent implements OnInit {
     .addcard({ ...this.carddetails.value.carddata, userid: localStorage.getItem('id') })
     .subscribe(
       res => {
-        this.selectedpayment = res._doc['_id']
-        this.reviewCardDetails = res._doc;
+        this.selectedpayment = res["_doc"]['_id']
+        this.reviewCardDetails = res["_doc"];
         this.ns.success(res['message'])
         this.stepper.next()
 //        this.ngOnInit()

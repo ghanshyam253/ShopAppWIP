@@ -29,7 +29,7 @@ export class InTransitOrdersComponent implements OnInit {
     var statusForFetch = "ORDER IN TRANSIT";
     this.dataservice
     .getAllOrdersByStatus(statusForFetch)
-    .subscribe(res =>{
+    .subscribe((res:any[]) =>{
       console.log(res);
       this.orders = res
     })
