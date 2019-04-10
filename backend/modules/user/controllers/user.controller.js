@@ -74,7 +74,6 @@ let resetpasswordfromapp = (req, res) => {
         .catch(err => {
             return res.send(422, err.message)
         })
-      
 }
 module.exports.resetpasswordfromapp = resetpasswordfromapp
 
