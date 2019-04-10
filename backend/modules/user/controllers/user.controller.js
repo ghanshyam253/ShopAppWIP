@@ -65,3 +65,16 @@ let login = (req, res) => {
 }
 module.exports.login = login
 
+
+let resetpasswordfromapp = (req, res) => {
+    usermodel.updateuser(req.session.user.id,{AccessToken: req.session.token})
+        .then(user => {
+            res.json({ token: req.session.token, role: req.session.user.role, id: req.session.user.id })
+        })
+        .catch(err => {
+            return res.send(422, err.message)
+        })
+      
+}
+module.exports.resetpasswordfromapp = resetpasswordfromapp
+

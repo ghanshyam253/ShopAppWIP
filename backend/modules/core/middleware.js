@@ -3,6 +3,7 @@ let userModel = require('../../models/user.model').user
 let config = require('../../config/config')
 
 let tokenAuthentication = (req, res, next) => {
+  console.log("inside tokenAuthentication");
     if (req.headers.token || req.query.token) {
       try {
         let decoded = jwt.verify(req.headers.token || req.query.token, config.tokensecret)

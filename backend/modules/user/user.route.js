@@ -14,4 +14,5 @@ router.post('/edit/:id', auth, usercontroller.updateuser)
 
 router.post('/login', auth, usercontroller.login)
 
+router.post('/resetpasswordfromapp', auth, usercontroller.resetpasswordfromapp)
 module.exports = router

@@ -46,11 +46,13 @@ const schema = new Schema({
 
 schema.pre('save', function (next) {
     var user = this;
-
+    console.log(user);
+    console.log(user.passwordhash);
     if (!user.isModified('passwordhash')) return next();
 
     bcrypt.hash(user.passwordhash, 10)
         .then(hash => {
+            console.log(hash);
             user.passwordhash = hash
             next()
         })
