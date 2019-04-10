@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginService } from './services/login/loginservice.service';
+import {WindowRefService} from './services/window-ref.service';
 import 'hammerjs';
 import { CustomMaterialModule } from './app.material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -79,6 +80,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     FormsModule
   ],
   providers: [
+    WindowRefService,
     LoginService,
     DialogService,
     DataService,

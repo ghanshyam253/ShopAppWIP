@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone  } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../services/dataservice/dataservice.service';
+import {WindowRefService} from '../services/window-ref.service';
 import { NgForm } from '@angular/forms';
 import { CardDetails } from '../models/card.model';
 import { Address } from '../models/address.model';
@@ -21,6 +22,7 @@ export class CheckoutComponent implements OnInit {
   gngtoaddnew: Boolean = false
   selectedaddress: String = null
   selectedpayment: String = null
+  razorpay_payment_id: String =null
   reviewaddress: Address;
   reviewCardDetails: CardDetails;
   firstFormGroup;
@@ -29,7 +31,43 @@ export class CheckoutComponent implements OnInit {
   @ViewChild('carddetails') carddetails: NgForm
   @ViewChild('stepper') stepper: MatHorizontalStepper
   orders: Order[];
-  constructor(private router: Router, private dataservice: DataService, private ns: NotificationService) {  }
+  Razorpay :any;
+  options :any;
+  constructor(private ngZoneService: NgZone, private router: Router, private winRef: WindowRefService,
+  private dataservice: DataService, private ns: NotificationService) { 
+    console.log('Native window obj', winRef.nativeWindow);
+    this.Razorpay = winRef.nativeWindow.Razorpay;
+    let that= this;
+      this.options = {
+    "key": "rzp_test_or67bVztRnGPe5",
+    "amount": "59900", /// The amount is shown in currency subunits. Actual amount is ?599.
+    "name": "Merchant Name",
+    "currency": "INR", // Optional. Same as the Order currency
+    "description": "Purchase Description",
+    "handler": (response)=>{
+        this.ngZoneService.run(() => { // <== added
+                    that.razorpay_payment_id = response.razorpay_payment_id;
+                    that.placeorder();
+                 });
+      console.log(response);
+//      console.log(obk);
+        //alert(response.razorpay_payment_id);
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "test@test.com",
+        "contact": "8275299312",
+        "method":"card" //{card|netbanking|wallet|emi|upi}
+    },
+    "notes": {
+        "address": "Hello World"
+    },
+    "theme": {
+        "color": "#F37254"
+    }
+};
+   }
+   self=this;
 
   ngOnInit() { 
     this.dataservice
@@ -64,6 +102,8 @@ export class CheckoutComponent implements OnInit {
     //console.log(this.gngtoaddnew)
   }
   addnewaddress() {
+    var rzp1 = this.Razorpay(this.options);
+console.log(rzp1);
     this.dataservice
     .addaddress({ ...this.addressform.value.addressdata, userid: localStorage.getItem('id') })
     .subscribe(res => {
@@ -72,7 +112,11 @@ export class CheckoutComponent implements OnInit {
       this.reviewaddress =res["_doc"];
       this.ns.success(res['message'])
 //      this.ngOnInit()
+    
       this.stepper.next()
+      var rzp1 = this.Razorpay(this.options);
+      rzp1.open();
+
 //      this.goToCardDetails()
     })
   }
@@ -100,11 +144,12 @@ export class CheckoutComponent implements OnInit {
     })
     debugger;
     this.dataservice
-    .placeorder(this.orders,this.selectedpayment, this.selectedaddress)
+    .placeorder(this.orders,this.razorpay_payment_id, this.selectedaddress)
     .subscribe(res => {
       console.log(res)
       swal('Congratulations!', 'Order Placed successfully', 'success')
-      this.router.navigate(['user'])
+      this.stepper.next();
+//      this.router.navigate(['user'])
     })
     this.dataservice
     .emptycart()
@@ -122,6 +167,8 @@ export class CheckoutComponent implements OnInit {
     })[0]
     console.log(this.reviewaddress)
     this.stepper.next()
+     var rzp1 = this.Razorpay(this.options);
+     rzp1.open();
   }
   goToReviewPage(){
     let selectedpayment = this.selectedpayment

@@ -19,13 +19,17 @@ const schema = new Schema({
     },
     card: {
         type: Schema.Types.ObjectId,
-        ref: 'card',
-        required: [true, 'card is missing']
+        ref: 'card'
     },
     address: {
         type: Schema.Types.ObjectId,
         ref: 'address',
         required: [true, 'address is missing']
+    },
+    razorpayPaymentId : {
+         type: String,
+        trim: true,
+         required: [true, 'razorpayPaymentId is missing']
     },
     reviewmessage: {
         type: String,
@@ -49,8 +53,10 @@ module.exports = {
     placeorder: data => new order(data).save(),
     deleteorder: orderid => order.findByIdAndRemove(orderid),
     updateorder: (orderid, data) => order.findByIdAndUpdate(orderid, data),
-    getorderbyid: user_id => order.find({ userid: user_id }).populate('card').populate('address'),
-    getallorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('card').populate('address'),
+//    getorderbyid: user_id => order.find({ userid: user_id }).populate('card').populate('address'),
+    getorderbyid: user_id => order.find({ userid: user_id }).populate('address'),
+//    getallorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('card').populate('address'),
+    getallorderbyorderstatus : orderstatus => order.find({"orderdetails.orderStatus":orderstatus}).populate('address'),
     
     deleteorderfromgrouporder: (completeorderid, specificorderid) => {
         console.log("completeorderid",completeorderid);

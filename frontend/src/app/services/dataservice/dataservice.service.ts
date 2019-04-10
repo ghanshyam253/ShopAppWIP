@@ -103,11 +103,11 @@ export class DataService {
     })
   }
 
-  placeorder (orderdetails,card, address) {
+  placeorder (orderdetails,razorpayPaymentId, address) {
     debugger;
     return this.httpclient.post(config.url + 'order/create', {
       orderdetails,
-      card,
+      razorpayPaymentId,
       address,
       userid: localStorage.getItem('id')
     },{ responseType: 'text' })
